@@ -2,6 +2,8 @@ import { useRoutes } from "react-router-dom";
 import SideMenu from "../layouts/side-menu/Main";
 import SimpleMenu from "../layouts/simple-menu/Main";
 import TopMenu from "../layouts/top-menu/Main";
+import Login from "../views/Auth/login";
+import Register from "../views/Auth/register";
 import Page1 from "../views/page-1/Main";
 import Page2 from "../views/page-2/Main";
 import Dashboard from "../views/Dashboard/Main";
@@ -66,6 +68,20 @@ function Router() {
           element: <Page2 />,
         },
       ],
+    },
+    
+
+
+
+    {
+      path: "/login",
+      element: <Login />,
+      
+    },
+    {
+      path: "/register",
+      element: <Register />,
+      
     },
   ];
 

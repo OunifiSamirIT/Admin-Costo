@@ -222,9 +222,10 @@ function Main(props) {
                 <DropdownItem className="hover:bg-white/5">
                   <Lucide icon="User" className="w-4 h-4 mr-2" /> Profile
                 </DropdownItem>
+                <a href="/login" >
                 <DropdownItem className="hover:bg-white/5">
                   <Lucide icon="Edit" className="w-4 h-4 mr-2" /> Add Account
-                </DropdownItem>
+                </DropdownItem>                        </a> 
                 <DropdownItem className="hover:bg-white/5">
                   <Lucide icon="Lock" className="w-4 h-4 mr-2" /> Reset Password
                 </DropdownItem>
