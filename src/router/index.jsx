@@ -1,91 +1,71 @@
-import { useRoutes } from "react-router-dom";
+import React from "react";
+import { useRoutes, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import SideMenu from "../layouts/side-menu/Main";
-import SimpleMenu from "../layouts/simple-menu/Main";
-import TopMenu from "../layouts/top-menu/Main";
-import Login from "../views/Auth/login";
+import Login from "../views/Auth/Login";
 import Register from "../views/Auth/register";
-import Page1 from "../views/page-1/Main";
-import Page2 from "../views/page-2/Main";
 import Dashboard from "../views/Dashboard/Main";
 import Products from "../views/Products/Main";
 import Categories from "../views/Categories/Main";
 import Transactions from "../views/Transactions/Main";
 import Settings from "../views/Settings/Main";
 
+function AuthenticatedRoutes() {
+  return (
+    <SideMenu>
+      <Dashboard path="/" />
+      <Products path="/products" />
+      <Categories path="/categories" />
+      <Transactions path="/transactions" />
+      <Settings path="/settings" />
+    </SideMenu>
+  );
+}
+
 function Router() {
-  const routes = [
+  const isAuthenticated = useSelector(
+    (state) => state.auth.status === "succeeded"
+  );
+  const isLoggingIn = useSelector((state) => state.auth.status === "loading");
+  if (isLoggingIn) {
+    return <div>Checking Authentication...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center">
+          <div className="animate-spin text-9xl text-indigo-600 mb-2">
+            &#9696;
+          </div>
+          <div className="text-gray-700 text-5xl">
+            Not Authorized. Please log in.
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const routes = useRoutes([
     {
       path: "/",
-      element: <SideMenu />,
-      children: [
-        {
-          path: "/",
-          element: <Dashboard />,
-        },
-        {
-          path: "/products",
-          element: <Products />,
-        },
-        {
-          path: "/categories",
-          element: <Categories />,
-        },
-        {
-          path: "/transactions",
-          element: <Transactions />,
-        },
-        {
-          path: "/settings",
-          element: <Settings />,
-        },
-        
-      ],
+      element: isAuthenticated ? (
+        <AuthenticatedRoutes />
+      ) : (
+        <Navigate to="/login" />
+      ),
     },
-    {
-      path: "/simple-menu",
-      element: <SimpleMenu />,
-      children: [
-        {
-          path: "page-1",
-          element: <Page1 />,
-        },
-        {
-          path: "page-2",
-          element: <Page2 />,
-        },
-      ],
-    },
-    {
-      path: "/top-menu",
-      element: <TopMenu />,
-      children: [
-        {
-          path: "page-1",
-          element: <Page1 />,
-        },
-        {
-          path: "page-2",
-          element: <Page2 />,
-        },
-      ],
-    },
-    
-
-
-
     {
       path: "/login",
       element: <Login />,
-      
     },
     {
       path: "/register",
       element: <Register />,
-      
     },
-  ];
+  ]);
 
-  return useRoutes(routes);
+  return routes;
 }
 
 export default Router;

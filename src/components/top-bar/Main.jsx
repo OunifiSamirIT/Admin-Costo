@@ -15,8 +15,15 @@ import { faker as $f } from "@/utils";
 import * as $_ from "lodash";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../redux/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 function Main(props) {
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+
   const [searchDropdown, setSearchDropdown] = useState(false);
   const showSearchDropdown = () => {
     setSearchDropdown(true);
@@ -25,6 +32,23 @@ function Main(props) {
     setSearchDropdown(false);
   };
 
+
+
+
+  const handleLogout = async () => {
+    try {
+      // Dispatch the logout action
+      await dispatch(logoutUser());
+
+      // Clear local storage
+      localStorage.clear();
+
+      // Redirect to the login page
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
   return (
     <>
       {/* BEGIN: Top Bar */}
@@ -213,7 +237,7 @@ function Main(props) {
             <DropdownMenu className="w-56">
               <DropdownContent className="bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white">
                 <DropdownHeader tag="div" className="!font-normal">
-                  <div className="font-medium">{$f()[0].users[0].name}</div>
+                <div className="font-medium">{user ? user.name : 'Guest'}</div>
                   <div className="text-xs text-white/70 mt-0.5 dark:text-slate-500">
                     {$f()[0].jobs[0]}
                   </div>
@@ -234,7 +258,9 @@ function Main(props) {
                 </DropdownItem>
                 <DropdownDivider className="border-white/[0.08]" />
                 <DropdownItem className="hover:bg-white/5">
-                  <Lucide icon="ToggleRight" className="w-4 h-4 mr-2" /> Logout
+                  <Lucide icon="ToggleRight" className="w-4 h-4 mr-2" /><button onClick={handleLogout}>
+      Logout
+    </button> 
                 </DropdownItem>
               </DropdownContent>
             </DropdownMenu>
