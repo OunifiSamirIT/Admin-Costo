@@ -5,7 +5,7 @@ function Main() {
         <h2 className="text-lg font-medium mr-auto">Dashboard Page</h2>
       </div>
       {/* BEGIN: Page Layout */}
-      <div className="intro-y box p-5 mt-5">Example Dashboard</div>
+      <div className="intro-y box p-5 mt-5">test Dashboard</div>
       {/* END: Page Layout */}
     </>
   );
