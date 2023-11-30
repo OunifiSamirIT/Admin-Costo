@@ -1,45 +1,95 @@
-import React from 'react';
-import { useRoutes, Navigate } from 'react-router-dom';
+import { useRoutes, Navigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import SideMenu from '../layouts/side-menu/Main';
-import Login from '../views/Auth/Login';
-import Register from '../views/Auth/register';
-import Dashboard from '../views/Dashboard/Main';
-import Products from '../views/Products/Main';
-import Categories from '../views/Categories/Main';
-import Transactions from '../views/Transactions/Main';
-import Settings from '../views/Settings/Main';
-
-function AuthenticatedRoutes() {
-  return (
-    <SideMenu>
-      <Dashboard path="/" />
-      <Products path="/products" />
-      <Categories path="/categories" />
-      <Transactions path="/transactions" />
-      <Settings path="/settings" />
-    </SideMenu>
-  );
-}
+import SideMenu from "../layouts/side-menu/Main";
+import SimpleMenu from "../layouts/simple-menu/Main";
+import TopMenu from "../layouts/top-menu/Main";
+import Login from "../views/Auth/login";
+import Register from "../views/Auth/register";
+import Page1 from "../views/page-1/Main";
+import Page2 from "../views/page-2/Main";
+import Dashboard from "../views/Dashboard/Main";
+import Products from "../views/Products/Main";
+import Categories from "../views/Categories/Main";
+import Transactions from "../views/Transactions/Main";
+import Settings from "../views/Settings/Main";
 
 function Router() {
-  const isAuthenticated = useSelector((state) => state.auth.status === 'succeeded');
-  const routes = useRoutes([
-    {
-      path: '/',
-      element: isAuthenticated ? <AuthenticatedRoutes /> : <Navigate to="/login" />,
-    },
-    {
-      path: '/login',
-      element: <Login />,
-    },
-    {
-      path: '/register',
-      element: <Register />,
-    },
-  ]);
+  const isAuthenticated = useSelector(state => state.auth.user !== null);
 
-  return routes;
+  const PrivateRoute = ({ element, ...rest }) => {
+    return isAuthenticated ? (
+      element
+    ) : (
+      <Navigate to="/login" state={{ from: (rest.location && rest.location.pathname) || '/' }} replace />
+    );
+  };
+
+  const routes = [
+    {
+      path: "/",
+      element: <SideMenu />,
+      children: [
+        {
+          path: "/",
+          element: <PrivateRoute element={<Dashboard />} />,
+        },
+        {
+          path: "/products",
+          element: <PrivateRoute element={<Products />} />,
+        },
+        {
+          path: "/categories",
+          element: <PrivateRoute element={<Categories />} />,
+        },
+        {
+          path: "/transactions",
+          element: <PrivateRoute element={<Transactions />} />,
+        },
+        {
+          path: "/settings",
+          element: <PrivateRoute element={<Settings />} />,
+        },
+      ],
+    },
+    {
+      path: "/simple-menu",
+      element: <SimpleMenu />,
+      children: [
+        {
+          path: "page-1",
+          element: <PrivateRoute element={<Page1 />} />,
+        },
+        {
+          path: "page-2",
+          element: <PrivateRoute element={<Page2 />} />,
+        },
+      ],
+    },
+    {
+      path: "/top-menu",
+      element: <TopMenu />,
+      children: [
+        {
+          path: "page-1",
+          element: <PrivateRoute element={<Page1 />} />,
+        },
+        {
+          path: "page-2",
+          element: <PrivateRoute element={<Page2 />} />,
+        },
+      ],
+    },
+    {
+      path: "/login",
+      element: isAuthenticated ? <Navigate to="/" replace /> : <Login />,
+    },
+    {
+      path: "/register",
+      element: isAuthenticated ? <Navigate to="/" replace /> : <Register />,
+    },
+  ];
+
+  return useRoutes(routes);
 }
 
 export default Router;
