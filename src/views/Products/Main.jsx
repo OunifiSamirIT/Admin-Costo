@@ -17,7 +17,6 @@ const categories = [
 ];
 function Main() {
   const [image, setImage] = useState("");
-  console.log('Rendering Dashboard');
 
   return (
     <>
