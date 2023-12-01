@@ -11,11 +11,21 @@ const sideMenu = atom({
       },
       {
         icon: "Box",
-        pathname: "/products",
+        pathname: "/products/show",
         title: "Products",
+        subMenu : [{
+          icon : "PlusSquare",
+          pathname: "/products/add",
+          title : " Add Products"
+        },
+        {
+          icon : "List",
+          pathname: "/products/show",
+          title : " All Products"
+        }]
       },
       {
-        icon: "List",
+        icon: "Copy",
         pathname: "/categories",
         title: "Categories",
       },

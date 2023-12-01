@@ -8,7 +8,8 @@ import Register from "../views/Auth/register";
 import Page1 from "../views/page-1/Main";
 import Page2 from "../views/page-2/Main";
 import Dashboard from "../views/Dashboard/Main";
-import Products from "../views/Products/Main";
+import AddProducts from "../views/Products/Add";
+import ShowProducts from "../views/Products/Show";
 import Categories from "../views/Categories/Main";
 import Transactions from "../views/Transactions/Main";
 import Settings from "../views/Settings/Main";
@@ -35,7 +36,15 @@ function Router() {
         },
         {
           path: "/products",
-          element: <PrivateRoute element={<Products />} />,
+          element: <PrivateRoute element={<ShowProducts />} />,
+        },
+        {
+          path: "/products/add",
+          element: <PrivateRoute element={<AddProducts />} />,
+        },
+        {
+          path: "/products/show",
+          element: <PrivateRoute element={<ShowProducts />} />,
         },
         {
           path: "/categories",
