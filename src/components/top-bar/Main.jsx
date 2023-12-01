@@ -17,7 +17,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../redux/authSlice';
+import { logoutUser } from '../../redux/Reducer/authSlice';
 import { useNavigate } from 'react-router-dom';
 
 function Main(props) {

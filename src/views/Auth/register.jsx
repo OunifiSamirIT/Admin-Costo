@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../../redux/authSlice';
+import { registerUser } from '../../redux/Reducer/authSlice';
 
 const Register = () => {
   const dispatch = useDispatch();

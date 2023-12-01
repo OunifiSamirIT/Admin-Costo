@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../redux/authSlice';
+import { loginUser } from '../../redux/Reducer/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { setUser } from '../../redux/authSlice';
+import { setUser } from '../../redux/Reducer/authSlice';
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
