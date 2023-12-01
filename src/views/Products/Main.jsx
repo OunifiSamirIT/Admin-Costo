@@ -139,6 +139,26 @@ function Main() {
             <input
               className="w-full border-2 border-gray-300 p-2 rounded"
               type="text"
+              placeholder="rating"
+              name="rating"
+              value={product.rating}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mt-4">
+            <input
+              className="w-full border-2 border-gray-300 p-2 rounded"
+              type="text"
+              placeholder="stock"
+              name="stock"
+              value={product.stock}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="mt-4">
+            <input
+              className="w-full border-2 border-gray-300 p-2 rounded"
+              type="text"
               placeholder="thumbnail"
               name="thumbnail"
               value={product.thumbnail}
