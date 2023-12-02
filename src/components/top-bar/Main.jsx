@@ -10,7 +10,7 @@ import {
   DropdownHeader,
   DropdownDivider,
 } from "@/base-components";
-import logoUrl from "@/assets/images/logo.svg";
+import logoUrl from "@/assets/images/logo.jpg";
 import { faker as $f } from "@/utils";
 import * as $_ from "lodash";
 import classnames from "classnames";
@@ -37,13 +37,10 @@ function Main(props) {
 
   const handleLogout = async () => {
     try {
-      // Dispatch the logout action
       await dispatch(logoutUser());
 
-      // Clear local storage
       localStorage.clear();
 
-      // Redirect to the login page
       navigate('/login');
     } catch (error) {
       console.error('Logout failed:', error);
@@ -63,10 +60,10 @@ function Main(props) {
           >
             <img
               alt="Enigma Tailwind HTML Admin Template"
-              className="logo__image w-6"
+              className="logo__image rounded-full w-12"
               src={logoUrl}
             />
-            <span className="logo__text text-white text-lg ml-3"> Enigma </span>
+            <span className="logo__text text-white text-lg mt-3 ml-3"> COSTO </span>
           </Link>
           {/* END: Logo */}
           {/* BEGIN: Breadcrumb */}

@@ -8,7 +8,6 @@ const initialState = {
   error: null,
 };
 
-// Try to get user data from local storage
 const storedUser = JSON.parse(localStorage.getItem('user'));
 
 if (storedUser) {
@@ -48,7 +47,6 @@ const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.user = action.payload;
-        // Save user data to local storage
         localStorage.setItem('user', JSON.stringify(action.payload));
       })
       .addCase(registerUser.rejected, (state, action) => {
@@ -63,18 +61,15 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.user = action.payload.user;
-        // Save user data to local storage
         localStorage.setItem('user', JSON.stringify(action.payload.user));
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })
-      // logout
       .addCase(logoutUser.fulfilled, (state) => {
         state.status = 'idle';
         state.user = null;
-        // Remove user data from local storage
         localStorage.removeItem('user');
       });
   },
