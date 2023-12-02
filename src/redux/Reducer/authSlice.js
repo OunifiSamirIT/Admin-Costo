@@ -1,4 +1,3 @@
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -20,28 +19,24 @@ export const registerUser = createAsyncThunk('auth/register', async (userData) =
 });
 
 export const loginUser = createAsyncThunk('auth/login', async (credentials) => {
-  const response = await axios.post('http://localhost:5000/api/auth/login', credentials);
-  return response.data;
-});
+    const response = await axios.post('http://localhost:5000/api/auth/login', credentials);
+    return response.data;
+  });
 
-export const logoutUser = createAsyncThunk('auth/logout', async () => {
-  await axios.post('http://localhost:5000/api/auth/logout');
-});
+  export const logoutUser = createAsyncThunk('auth/logout', async () => {
+ 
+    await axios.post('http://localhost:5000/api/auth/logout');
+  });
 
+  
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-
-    setUser: (state, action) => {
-      state.user = action.payload;
-      localStorage.setItem('user', JSON.stringify(action.payload));
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      // register
-      .addCase(registerUser.pending, (state) => {
+   //register
+    .addCase(registerUser.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(registerUser.fulfilled, (state, action) => {
@@ -54,7 +49,7 @@ const authSlice = createSlice({
         state.error = action.error.message;
       })
 
-      // login
+//login
       .addCase(loginUser.pending, (state) => {
         state.status = 'loading';
       })
