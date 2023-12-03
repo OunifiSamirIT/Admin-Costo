@@ -1,6 +1,10 @@
 // features/product/productSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { addProduct } from '../Actions/productActions';
+import axios from 'axios';
+
+
+
 
 const productSlice = createSlice({
   name: 'product',

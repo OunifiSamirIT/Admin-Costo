@@ -290,6 +290,14 @@ function Main() {
             onChange={handleImageChange}
             multiple 
           />
+          <div className="flex justify-end items-center my-2">
+            <button
+              type="submit"
+              className="bg-blue-500 text-white py-2 px-4 rounded-20"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </>
