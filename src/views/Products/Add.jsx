@@ -70,7 +70,7 @@ function Main() {
   return (
     <>
       <div className="pt-6 pb-5">
-        <h6 className="text-xl mb-6">Add Product</h6>
+        <h6 className="text-xl mb-6">Add wassim Product</h6>
         <form
           onSubmit={handleSubmit}
           className="bg-slate-100 border-2  border-slate-200 rounded-md shadow-md p-5 max-w-800 mx-auto cursor-pointer overflow-hidden dark:bg-gray-600"
@@ -78,7 +78,7 @@ function Main() {
           <div className="flex justify-end items-center mt-30">
             <button
               type="submit"
-              className="bg-blue-500 text-white rounded-md py-2 px-4 rounded-20"
+              className="bg-blue-500 text-white dark:text-black rounded-md py-2 px-4 rounded-20"
             >
               Add New Product
             </button>
