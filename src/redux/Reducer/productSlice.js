@@ -1,6 +1,6 @@
 // features/product/productSlice.js
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { addProduct } from '../Actions/productActions';
+import { addProduct , deleteProduct } from '../Actions/productActions';
 import axios from 'axios';
 
 
@@ -27,7 +27,21 @@ const productSlice = createSlice({
       .addCase(addProduct.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+      })
+      .addCase(deleteProduct.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        // Remove the deleted product from the state
+        state.data = action.payload;
+        state.loading = false;
+      })
+      .addCase(deleteProduct.rejected, (state, action) => {
+        state.loading = false;
+        state.error = 'failed to delete'; // Assuming the error message is returned in the payload
       });
+      ;
   },
 });
 
