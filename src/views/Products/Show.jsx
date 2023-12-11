@@ -120,7 +120,7 @@ function Main() {
                 </DropdownItem>
                 <DropdownItem>
                   <Lucide icon="FileText" className="w-4 h-4 mr-2" />
-                  <CSVDownload data={products} headers={headers} filename={'Products_list_' + currentDate + '.csv'} >Export to Excel</CSVDownload>;
+                  <CSVLink data={products} headers={headers} filename={'Products_list_' + currentDate + '.csv'} >Export to Excel</CSVLink>;
                 </DropdownItem>
                 <DropdownItem>
                   <Lucide icon="FileText" className="w-4 h-4 mr-2" /> Export to
