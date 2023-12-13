@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 import classnames from "classnames";
 import { useDispatch } from "react-redux";
 import { getProducts,deleteProduct } from "../../redux/Actions/productActions";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 function Main() {
   const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
@@ -94,7 +94,7 @@ function Main() {
   const currentDate = new Date().toLocaleDateString('en-GB');
 
   const handleImageClick = (url) => {
-    setImageUrl('http://localhost:5000/' + url)
+    setImageUrl('http://localhost:5000' + url)
     setShowModel(true)
   }
   return (
@@ -120,7 +120,7 @@ function Main() {
                 </DropdownItem>
                 <DropdownItem>
                   <Lucide icon="FileText" className="w-4 h-4 mr-2" />
-                  <CSVDownload data={products} headers={headers} filename={'Products_list_' + currentDate + '.csv'} >Export to Excel</CSVDownload>;
+                  {products > 0  && <CSVLink data={products} headers={headers} filename={'Products_list_' + currentDate + '.csv'} >Export to Excel</CSVLink>};
                 </DropdownItem>
                 <DropdownItem>
                   <Lucide icon="FileText" className="w-4 h-4 mr-2" /> Export to
@@ -172,7 +172,7 @@ function Main() {
                             tag="img"
                             alt="Midone Tailwind HTML Admin Template"
                             className="rounded-full"
-                            src={'http://localhost:5000/' + img.url}
+                            src={'http://localhost:5000' + img.url}
                             content={`Uploaded at 03/12/2024`}
                           />
                         </div>
