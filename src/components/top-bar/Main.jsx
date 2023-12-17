@@ -48,15 +48,13 @@ function Main(props) {
   };
   return (
     <>
-      {/* BEGIN: Top Bar */}
       <div
         className={`${props.className} top-bar-boxed h-[70px] md:h-[65px] z-[51] border-b border-white/[0.08] mt-12 md:mt-0 -mx-3 sm:-mx-8 md:-mx-0 px-3 md:border-b-0 relative md:fixed md:inset-x-0 md:top-0 sm:px-8 md:px-10 md:pt-10 md:bg-gradient-to-b md:from-slate-100 md:to-transparent dark:md:from-darkmode-700`}
       >
         <div className="h-full flex items-center">
-          {/* BEGIN: Logo */}
           <Link
             to="/"
-            className="logo -intro-x hidden md:flex xl:w-[180px] block"
+            className="logo -intro-x hidden md:flex xl:w-[180px] "
           >
             <img
               alt="Enigma Tailwind HTML Admin Template"
