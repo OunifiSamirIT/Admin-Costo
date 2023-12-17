@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 import classnames from "classnames";
 import { useDispatch } from "react-redux";
 import { getProducts,deleteProduct } from "../../redux/Actions/productActions";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 function Main() {
   const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
@@ -120,7 +120,7 @@ function Main() {
                 </DropdownItem>
                 <DropdownItem>
                   <Lucide icon="FileText" className="w-4 h-4 mr-2" />
-                  <CSVLink data={products} headers={headers} filename={'Products_list_' + currentDate + '.csv'} >Export to Excel</CSVLink>;
+                  {products > 0  && <CSVLink data={products} headers={headers} filename={'Products_list_' + currentDate + '.csv'} >Export to Excel</CSVLink>};
                 </DropdownItem>
                 <DropdownItem>
                   <Lucide icon="FileText" className="w-4 h-4 mr-2" /> Export to
