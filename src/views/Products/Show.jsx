@@ -94,7 +94,7 @@ function Main() {
   const currentDate = new Date().toLocaleDateString('en-GB');
 
   const handleImageClick = (url) => {
-    setImageUrl('http://localhost:5000' + url)
+    setImageUrl('https://admin-costo-backend-production.up.railway.app' + url)
     setShowModel(true)
   }
   return (
@@ -172,7 +172,7 @@ function Main() {
                             tag="img"
                             alt="Midone Tailwind HTML Admin Template"
                             className="rounded-full"
-                            src={'http://localhost:5000' + img.url}
+                            src={'https://admin-costo-backend-production.up.railway.app' + img.url}
                             content={`Uploaded at 03/12/2024`}
                           />
                         </div>
