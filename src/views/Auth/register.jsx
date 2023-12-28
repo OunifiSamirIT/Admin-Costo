@@ -69,7 +69,7 @@ const Register = () => {
 
           <div className="text-grey-dark mt-6">
             Already have an account?
-            <a className="no-underline border-b border-blue text-blue" href="https://admin-costo-backend-production.up.railway.app/login">
+            <a className="no-underline border-b border-blue text-blue" href="https://admin-costo.vercel.app/login">
               Log in
             </a>
             .
