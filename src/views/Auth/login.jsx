@@ -93,7 +93,7 @@ function Login() {
 
         <p className="mt-4 text-center text-sm text-gray-500">
           Not a member?
-          <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+          <a href="https://admin-costo-backend-production.up.railway.app/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
             Sign up
           </a>
         </p>
