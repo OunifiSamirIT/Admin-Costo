@@ -166,7 +166,6 @@ function Main() {
 
     setProduct({ ...product, images: imagesArray });
 
-    // Update the state with the mapped images
     const newUploadedImages = imagesArray.map((image, index) => (
       <img key={index} src={URL.createObjectURL(image.file)} alt={`Image ${index + 1}`} className="mx-auto h-12 w-12" />
     ));
@@ -190,40 +189,18 @@ function Main() {
       }
     });
 
-    // Dispatch your action (addProduct) with formData
     dispatch(addProduct(formData));
-    // After successful submission, update the UI with selected images
     const uploadedImages = product.images.map((image, index) => (
       <img key={index} src={URL.createObjectURL(image.file)} alt={`Image ${index + 1}`} className="mx-auto h-12 w-12" />
     ));
     setUploadedImages(uploadedImages);
 
-    // You can do something with the uploadedImages, such as displaying them in a separate div or modal
     console.log("Uploaded Images:", uploadedImages);
 
-    // Reset the form or navigate to another page if needed
     setProduct({ images: [] });
     setUploadedImages([]);
   };
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const formData = new FormData();
-
-  //   Object.entries(product).forEach(([key, value]) => {
-  //     if (key === "images") {
-  //       value.forEach((image, index) => {
-  //         formData.append(`files`, image.file);
-  //       });
-  //     } else {
-  //       formData.append(key, value);
-  //     }
-  //   });
-
-  //   dispatch(addProduct(formData));
-
-  // };
-
+  
   return (
     <>
       
@@ -328,21 +305,7 @@ function Main() {
                 </div>
               </div>
             </div>
-            {/* <div className="mt-3">
-              <label htmlFor="crud-form-2" className="form-label">
-                Tag
-              </label>
-              <input
-                id="crud-form-2"
-                type="text"
-
-                value={product.tag}
-                name="tag"
-                onChange={handleInputChange}
-                className="w-full"
-              />
-               
-            </div> */}
+           
             <div className="mt-3">
               <label htmlFor="crud-form-3" className="form-label">
                 Quantity
@@ -424,9 +387,7 @@ function Main() {
               <div className="mt-2  ">
                 <input
                 className="form-control w-full"
-                  // value={editorData}
-                  // onChange={setEditorData}
-                  // config={editorConfig}
+                 
                   type="text"
                   placeholder="Product Description"
                   name="description"
@@ -474,13 +435,7 @@ function Main() {
                 </div>
               </div>
             </label>
-            {/* <input
-              id="fileInput"
-              type="file"
-              className="hidden"
-              onChange={handleImageChange}
-              multiple
-            /> */}
+           
 
 <input
         id="fileInput"
@@ -489,7 +444,6 @@ function Main() {
         onChange={handleImageChange}
         multiple
       />
-      {/* Display selected images */}
       <div>
         {uploadedImages}
       </div>
@@ -505,7 +459,6 @@ function Main() {
               </button>
             </div>
           </div>
-          {/* END: Form Layout */}
         </div>
       </form>
     </>

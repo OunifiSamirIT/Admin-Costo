@@ -22,18 +22,13 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Dispatch loginUser action
     const loginResponse = await dispatch(loginUser(formData));
 
-    // Check if the login was successful
     if (loginResponse.payload && loginResponse.payload.user) {
-      // Dispatch setUser action with the user data
       dispatch(setUser(loginResponse.payload.user));
 
-      // Redirect to the home page or any other page you want
       navigate('/');
     } else {
-      // Set the notification message for login failure
       setNotification('Incorrect email or password');
     }
   };

@@ -14,18 +14,18 @@ if (storedUser) {
 }
 
 export const registerUser = createAsyncThunk('auth/register', async (userData) => {
-  const response = await axios.post('http://localhost:5000/api/auth/register', userData);
+  const response = await axios.post('https://admin-costo-backend-production.up.railway.app/api/auth/register', userData);
   return response.data;
 });
 
 export const loginUser = createAsyncThunk('auth/login', async (credentials) => {
-    const response = await axios.post('http://localhost:5000/api/auth/login', credentials);
+    const response = await axios.post('https://admin-costo-backend-production.up.railway.app/api/auth/login', credentials);
     return response.data;
   });
 
   export const logoutUser = createAsyncThunk('auth/logout', async () => {
  
-    await axios.post('http://localhost:5000/api/auth/logout');
+    await axios.post('https://admin-costo-backend-production.up.railway.app/api/auth/logout');
   });
 
   

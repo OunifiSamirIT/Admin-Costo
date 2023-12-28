@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const addProduct = createAsyncThunk('product/addProduct', async (formData) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/upload', formData, {
+      const response = await axios.post('https://admin-costo-backend-production.up.railway.app/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -17,7 +17,7 @@ export const addProduct = createAsyncThunk('product/addProduct', async (formData
 
   export const getProducts = createAsyncThunk('products/getProducts', async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/product');
+      const response = await axios.get('https://admin-costo-backend-production.up.railway.app/api/product');
       return response.data;
     } catch (error) {
       throw error;
@@ -28,7 +28,7 @@ export const addProduct = createAsyncThunk('product/addProduct', async (formData
     'product/deleteProduct',
     async (productId, { rejectWithValue }) => {
       try {
-        const response = await fetch(`http://localhost:5000/api/product/${productId}`, {
+        const response = await fetch(`https://admin-costo-backend-production.up.railway.app/api/product/${productId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -39,10 +39,8 @@ export const addProduct = createAsyncThunk('product/addProduct', async (formData
           throw new Error('Failed to delete product');
         }
   
-        // Return the deleted product ID
         return productId;
       } catch (error) {
-        // Reject with the error message
         return rejectWithValue(error.message);
       }
     }

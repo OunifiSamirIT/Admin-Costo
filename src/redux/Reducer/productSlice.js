@@ -33,13 +33,12 @@ const productSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
-        // Remove the deleted product from the state
         state.data = action.payload;
         state.loading = false;
       })
       .addCase(deleteProduct.rejected, (state, action) => {
         state.loading = false;
-        state.error = 'failed to delete'; // Assuming the error message is returned in the payload
+        state.error = 'failed to delete';
       });
       ;
   },
